@@ -1,0 +1,15 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <h2>Пользователь: {{ model.currentUser.name }}</h2>
+    <a href="/addVet" class="button">Добавить ветеринара</a>
+    <a href="/removeVet" class="button">Удалить ветеринара</a>
+
+    <h2>Ветеринары</h2>
+    {% for rec in model.vets %}
+        <div>
+            <p>{{rec.index + 1}}: {{rec.value.name}}
+            <a href="/removeVet?id={{rec.value.id}}">Удалить</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

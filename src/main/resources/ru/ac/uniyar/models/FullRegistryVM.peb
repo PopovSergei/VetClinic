@@ -1,0 +1,10 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Запись на приём к ветеринару</h1>
+    <p><h5><a href="/registry">Вернутся к списку записей</a></h5></p>
+
+    <p>Ветеринар: {{model.registry.vet.name}}</p>
+    <p>Дата и время приёма: {{model.registry.date}}</p>
+    <p>Хозяин: {{model.registry.animal.owner.name}}</p>
+    <p>Питомец: {{model.registry.animal.kind}} {{model.registry.animal.name}}</p>
+{% endblock %}

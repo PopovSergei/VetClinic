@@ -1,0 +1,15 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Записи на приём к ветеринару</h1>
+    <p><h5><a href="/main">Вернутся на главную страницу</a></h5></p>
+    <div>
+    <a href="/registry/new" class="button">Записаться на приём</a>
+    </div>
+
+    {% for rec in model.recList %}
+        <div>
+            <p>{{rec.index + 1}}: Дата и время приёма: {{rec.value.date}}
+            <a href="/registry/{{rec.index}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <h2>Пользователь: {{ model.currentUser.name }}</h2>
+    <a href="/registry/new" class="button">Записаться на приём</a>
+    <a href="/animal/new" class="button">Зарегистрировать питомца</a>
+
+    <h2>Ваши питомцы</h2>
+    {% for rec in model.animals %}
+        <div>
+            <p>{{rec.value.kind}} {{rec.value.name}}
+            <a href="/animal/{{rec.value.id}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+
+    <h2>Новые записи на приём</h2>
+    {% for rec in model.registryNew %}
+        <div>
+            <p>Дата и время приёма: {{rec.value.date}} {{rec.value.vet.name}}</p>
+            <p>Питомец: {{rec.value.animal.kind}} {{rec.value.animal.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Старые записи на приём</h2>
+    {% for rec in model.registryOld %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}, Ветеринар: {{rec.value.vet.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Записи в истории болезни</h2>
+    {% for rec in model.note %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}, Заключение: {{rec.value.conclusion}}, Счёт в рублях: {{rec.value.check}}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

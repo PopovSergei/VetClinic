@@ -1,0 +1,13 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Запись в исории болезни</h1>
+    <p><h5><a href="/note">Вернутся к списку записей</a></h5></p>
+
+    <p>Хозяин: {{model.note.animal.owner.name}}</p>
+    <p>Питомец: {{model.note.animal.kind}} {{model.note.animal.name}}
+        <a href="/animal/{{model.note.animal.id}}">Подробнее</a></p>
+    <p>Дата и время приёма: {{model.note.date}}</p>
+    <p>Ветеринар: {{model.note.vet.name}}</p>
+    <p>Заключение: {{ model.note.conclusion }}</p>
+    <p>Счёт в рублях: {{model.note.check}}</p>
+{% endblock %}

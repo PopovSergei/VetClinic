@@ -1,0 +1,24 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Вход</h1>
+    <p><h5><a href="/main">На главную страницу</a></h5></p>
+
+    {% if model.form.errors is not empty %}
+        <ul>
+            {% for error in model.form.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        <p><select name="login">
+            <option value="">Выберите значение</option>
+            {% for rec in model.users %}
+                <option value="{{rec.value.id}}">{{rec.value.name}}</option>
+            {% endfor %}
+        </select>
+        Пароль <input type="password" name="password" value="{{ model.form.fields["password"] | first }}"></p>
+        <input type="submit" value="Войти" class="button">
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "./layout.peb" %}
+{% block content %}
+
+    <h1>Записи в истории болезни</h1>
+    <p><h5><a href="/main">Вернутся на главную страницу</a></h5></p>
+    <div>
+    <a href="/note/new" class="button">Новая запись</a>
+    </div>
+
+    {% for rec in model.recList %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}, {{rec.value.conclusion}}
+            <a href="/note/{{rec.index}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

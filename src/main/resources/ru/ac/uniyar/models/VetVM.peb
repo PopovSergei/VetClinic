@@ -1,0 +1,42 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <h2>Пользователь: {{ model.currentUser.name }}</h2>
+    <a href="/note/new" class="button">Запись в историю болезни</a>
+
+    <h2>Новые записи на приём</h2>
+    {% for rec in model.registryNew %}
+        <div>
+            <p>Дата и время приёма: {{rec.value.date}},
+            Питомец: {{rec.value.animal.kind}} {{rec.value.animal.name}}
+            <a href="/animal/{{rec.value.animal.id}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+
+    <h2>Старые записи на приём</h2>
+    {% for rec in model.registryOld %}
+        <div>
+            <p>Дата и время приёма: {{rec.value.date}},
+            Питомец: {{rec.value.animal.kind}} {{rec.value.animal.name}}
+            <a href="/animal/{{rec.value.animal.id}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+
+    <h2>Записи в истории болезни</h2>
+    {% for rec in model.note %}
+        <div>
+            <p>{{rec.value.date}},
+            Питомец: {{rec.value.animal.kind}} {{rec.value.animal.name}},
+            Заключение: {{rec.value.conclusion}}
+            <a href="/animal/{{rec.value.animal.id}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+
+    <h2>Питомцы, которые были на приёме</h2>
+    {% for rec in model.animals %}
+        <div>
+            <p>{{rec.value.kind}} {{rec.value.name}}
+            <a href="/animal/{{rec.value.id}}">Подробнее</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

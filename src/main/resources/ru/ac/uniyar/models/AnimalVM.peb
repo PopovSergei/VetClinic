@@ -1,0 +1,33 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Питомец</h1>
+    <p><h5><a href="/user">Вернутся в личный кабинет</a></h5></p>
+    <a href="/registry/new?animal={{model.idString}}" class="button">Записаться на приём</a> <a href="/note/new?animal={{model.idString}}" class="button">Запись в историю болезни</a>
+    <a href="/updateAnimal?animal={{model.idString}}" class="button">Редактировать питомца</a>
+
+    <p>Дата и время регистрации: {{model.animal.addDate}}</p>
+    <p>Хозяин: {{model.animal.owner.name}}</p>
+    <p>Вид питомца: {{model.animal.kind}}</p>
+    <p>Имя питомца: {{model.animal.name}}</p>
+
+    <h2>Новые записи на приём</h2>
+    {% for rec in model.registryNew %}
+        <div>
+            <p>Дата и время приёма: {{rec.value.date}}, {{rec.value.vet.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Старые записи на приём</h2>
+    {% for rec in model.registryOld %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.vet.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Записи в истории болезни</h2>
+    {% for rec in model.matchNote %}
+        <div>
+            <p>{{rec.value.date}}, Заключение: {{rec.value.conclusion}}, Счёт в рублях: {{rec.value.check}}
+        </div>
+    {% endfor %}
+{% endblock %}

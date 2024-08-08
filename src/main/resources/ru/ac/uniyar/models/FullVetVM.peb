@@ -1,0 +1,34 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <h1>Ветеринар: {{ model.vet.name }}</h1>
+
+    <p><h5><a href="/vets">Вернутся к ветеринарам</a></h5></p>
+
+    <h2>Новые записи на приём</h2>
+    {% for rec in model.registryNew %}
+        <div>
+            <p>Дата и время приёма: {{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Старые записи на приём</h2>
+    {% for rec in model.registryOld %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Записи в истории болезни</h2>
+    {% for rec in model.note %}
+        <div>
+            <p>{{rec.value.date}}, {{rec.value.animal.kind}} {{rec.value.animal.name}}, {{rec.value.conclusion}}</p>
+        </div>
+    {% endfor %}
+
+    <h2>Питомцы, которые были на приёме</h2>
+    {% for rec in model.animals %}
+        <div>
+            <p>{{rec.value.kind}} {{rec.value.name}}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
